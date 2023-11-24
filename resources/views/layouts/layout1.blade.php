@@ -9,6 +9,8 @@
     <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}">
     {{-- Include Styles --}}
     @include('libraries.userStyle')
+    {{-- Submit BTN --}}
+    <link rel="stylesheet" href="{{asset('assets/css/pages/submit-btn.css')}}">
 </head>
 
 <body>
@@ -18,6 +20,8 @@
 
     {{-- Include Scripts --}}
     @include('libraries.userScript')
+    {{-- Submit BTN --}}
+    <script src="{{asset('assets/js/pages/submitBtn.js')}}"></script>
 </body>
 
 </html>
