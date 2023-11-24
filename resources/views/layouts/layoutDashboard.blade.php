@@ -21,7 +21,7 @@
         </aside>
         <!--  Sidebar End -->
         <!--  Main wrapper -->
-        <div class="body-wrapper">
+        <div class="body-wrapper d-flex flex-column min-vh-100">
             <!--  Header Start -->
             @include('components.header')
             <!--  Header End -->
@@ -30,10 +30,11 @@
                 {{-- Include Content --}}
                 @yield('content')
 
-                <div class="py-6 px-6 text-center">
-                    @include('components.footer')
-                </div>
+
             </div>
+        </div>
+        <div class="py-6 px-6 text-center">
+            @include('components.footer')
         </div>
     </div>
     {{-- Include Scripts --}}

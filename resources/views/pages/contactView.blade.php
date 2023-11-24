@@ -17,13 +17,13 @@
             <div class="card-body">
                 <div class=" d-flex">
                     <!-- Button trigger modal -->
-                    <button type="button" class="m-1 bg-blue-500 btn btn-primary" data-bs-toggle="modal"
+                    <button type="button" class="btn btn-primary m-1" data-bs-toggle="modal"
                         data-bs-target="#addContactModal">
                         <i class="ti ti-users"></i>
                         Add Contact</button>
 
                     <div class="dropdown">
-                        <button class="m-1 text-blue-500 btn dropdown-toggle bg-blue-50 btn-primary" type="button"
+                        <button class="btn btn-outline-primary m-1 dropdown-toggle" type="button"
                             data-bs-toggle="dropdown" aria-expanded="false">
                             Filter by Category
                         </button>
