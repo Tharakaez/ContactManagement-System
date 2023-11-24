@@ -30,8 +30,8 @@
                     <span class="hide-menu">Contact Management</span>
                 </li>
                 <li class="sidebar-item">
-                    <a class="sidebar-link" href="#"
-                        :active="request() - > routeIs('contact.list')" aria-expanded="false">
+                    <a class="sidebar-link" href="{{ route('contact') }}"
+                        :active="request() - > routeIs('contact')" aria-expanded="false">
                         <span>
                             <i class="ti ti-list-details"></i>
                         </span>
