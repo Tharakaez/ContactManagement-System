@@ -30,7 +30,7 @@
                     <li class="nav-item dropdown">
                         <a id="navbarDropdown" class="nav-link" href="#" role="button"
                             data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                            <span class=" fs-4"> {{ Auth::user()->name }} </span> <i class="ti ti-user ps-2 "></i>
+                            <span class=" fs-3"> {{ Auth::user()->name }} </span> <i class="ti ti-user ps-2 "></i>
                         </a>
 
                         <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">

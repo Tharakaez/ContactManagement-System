@@ -102,7 +102,7 @@
                             <h6 class="mb-0 text-gray-500 fw-normal fs-4">Text</h6>
                         </td>
                         <td class="border-bottom-0">
-                            <a href="#" class=" text-info view p-2"><i class="ti ti-eye fs-5"></i></a>
+                            <a href="{{ route('single.contact') }}" class=" text-info view p-2"><i class="ti ti-eye fs-5"></i></a>
 
                             <button type="button" class="text-warning edit btn p-2" data-bs-toggle="modal"
                                 data-bs-target="#editContactModal">

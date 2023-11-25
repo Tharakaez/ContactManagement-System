@@ -23,6 +23,25 @@ Route::get('/contact', function () {
     return view('pages.contactView');
 })->name('contact');
 
+Route::get('/singleContact', function () {
+    return view('pages.singleContact');
+})->name('single.contact');
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // Example of how you can define routes for email verification
 Auth::routes(['verify' => true]);
 
