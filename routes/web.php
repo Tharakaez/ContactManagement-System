@@ -21,11 +21,15 @@ Route::get('/', function () {
 
 Route::get('/contact', function () {
     return view('pages.contactView');
-})->name('contact');
+})->name('contact.view');
 
 Route::get('/singleContact', function () {
     return view('pages.singleContact');
 })->name('single.contact');
+
+Route::get('/category', function () {
+    return view('pages.categoryView');
+})->name('category.view');
 
 
 

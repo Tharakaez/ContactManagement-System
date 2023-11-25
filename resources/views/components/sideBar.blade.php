@@ -30,8 +30,8 @@
                     <span class="hide-menu">Contact Management</span>
                 </li>
                 <li class="sidebar-item">
-                    <a class="sidebar-link" href="{{ route('contact') }}"
-                        :active="request() - > routeIs('contact')" aria-expanded="false">
+                    <a class="sidebar-link" href="{{ route('contact.view') }}"
+                        :active="request() - > routeIs('contact.view')" aria-expanded="false">
                         <span>
                             <i class="ti ti-list-details"></i>
                         </span>
@@ -50,8 +50,8 @@
                 </li>
 
                 <li class="sidebar-item">
-                    <a class="sidebar-link" href="#"
-                        :active="request() - > routeIs('contact.category')" aria-expanded="false">
+                    <a class="sidebar-link" href="{{ route('category.view') }}"
+                        :active="request() - > routeIs('category.view')" aria-expanded="false">
                         <span>
                             <i class="ti ti-cards"></i>
                         </span>

@@ -5,7 +5,7 @@
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="{{ route('home') }}">Dashboard</a></li>
-                <li class="breadcrumb-item" aria-current="page"><a href="{{ route('contact') }}">Contacts</a></li>
+                <li class="breadcrumb-item" aria-current="page"><a href="{{ route('contact.view') }}">Contacts</a></li>
                 <li class="breadcrumb-item active" aria-current="page">Contact Details</li>
             </ol>
         </nav>
@@ -43,11 +43,11 @@
 
                     <div class="mt-3 col-lg-4 d-flex flex-column align-items-center align-items-lg-start mt-lg-0">
 
-                        <div class=" d-flex flex-lg-column">
-                            <div class=" d-flex align-items-center flex-column flex-lg-row col-6">
+                        <div class=" d-flex flex-lg-column flex-column ">
+                            <div class=" d-flex align-items-center flex-column flex-lg-row">
                                 <div
-                                    class="h-12 p-2 rounded-lg bg-slate-600 d-flex align-items-center justify-content-center">
-                                    <i class="text-3xl text-white ti ti-mail"></i>
+                                    class=" p-2 d-flex align-items-center justify-content-center bg-info rounded-2">
+                                    <i class=" text-white ti ti-mail fs-6 "></i>
                                 </div>
                                 <div class="mt-2 ms-2 d-flex flex-column align-items-center mt-lg-0 align-items-lg-start">
                                     <h6 class="fw-semibold mb-1">Email</h6>
@@ -57,11 +57,11 @@
                             </div>
 
 
-                            <div class="mt-lg-3 d-flex flex-column align-items-center align-items-lg-start col-6 col-lg-12">
+                            <div class="mt-lg-3 d-flex flex-column align-items-center align-items-lg-start  col-lg-12">
                                 <div class=" d-flex align-items-center flex-column flex-lg-row">
                                     <div
-                                        class="h-12 p-2 rounded-lg d-flex align-items-center justify-content-center bg-slate-600">
-                                        <i class="text-3xl text-white ti ti-phone"></i>
+                                        class="p-2 d-flex align-items-center justify-content-center bg-info rounded-2">
+                                        <i class="fs-6 text-white ti ti-phone"></i>
                                     </div>
                                     <div
                                         class="mt-2 ms-2 d-flex flex-column align-items-center mt-lg-0 align-items-lg-start">
@@ -77,8 +77,8 @@
                         <div class="mt-3 d-flex flex-column align-items-center align-items-lg-start">
                             <div class="d-flex align-items-center flex-column flex-lg-row ">
                                 <div
-                                    class="h-12 p-2 rounded-lg bg-slate-600 d-flex align-items-center justify-content-center">
-                                    <i class="text-3xl text-white ti ti-location"></i>
+                                    class="p-2 d-flex align-items-center justify-content-center bg-info rounded-2">
+                                    <i class="fs-6 text-white ti ti-location"></i>
                                 </div>
                                 <div class="mt-2 ms-2 d-flex flex-column align-items-center mt-lg-0 align-items-lg-start">
                                     <h6 class="fw-semibold mb-1">Location</h6>

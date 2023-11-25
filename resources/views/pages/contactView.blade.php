@@ -25,7 +25,7 @@
                     <div class="dropdown">
                         <button class="btn btn-outline-primary m-1 dropdown-toggle" type="button"
                             data-bs-toggle="dropdown" aria-expanded="false">
-                            Filter by Category
+                            <i class="ti ti-filter"></i>
                         </button>
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item filter-option" href="#" data-category="all">All Categories</a>
