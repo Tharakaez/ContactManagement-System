@@ -40,8 +40,8 @@
                 </li>
 
                 <li class="sidebar-item">
-                    <a class="sidebar-link" href="#"
-                        :active="request() - > routeIs('contact.favorite')" aria-expanded="false">
+                    <a class="sidebar-link" href="{{ route('fav.view') }}" :active="request() - > routeIs('fav.view')"
+                        aria-expanded="false">
                         <span>
                             <i class="ti ti-heart"></i>
                         </span>

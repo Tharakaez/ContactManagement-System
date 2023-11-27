@@ -64,6 +64,9 @@
                                     <th class="border-bottom-0">
                                         <h6 class="mb-0 fw-semibold">Location</h6>
                                     </th>
+                                    <th class="border-bottom-0">
+                                        <h6 class="mb-0 fw-semibold">Action</h6>
+                                    </th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -81,6 +84,10 @@
                                     <td class="border-bottom-0">
                                         <h6 class="mb-0 text-gray-500 fw-normal fs-4">Kandy</h6>
                                     </td>
+                                    <td class="border-bottom-0">
+                                        <a href="{{ route('single.contact') }}" class=" text-info view p-2"><i
+                                                class="ti ti-eye fs-5"></i></a>
+                                    </td>
 
                                 </tr>
 
@@ -97,6 +104,10 @@
                                     </td>
                                     <td class="border-bottom-0">
                                         <h6 class="mb-0 text-gray-500 fw-normal fs-4">Kandy</h6>
+                                    </td>
+                                    <td class="border-bottom-0">
+                                        <a href="{{ route('single.contact') }}" class=" text-info view p-2"><i
+                                                class="ti ti-eye fs-5"></i></a>
                                     </td>
 
                                 </tr>

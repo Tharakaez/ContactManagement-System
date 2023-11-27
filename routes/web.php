@@ -31,6 +31,10 @@ Route::get('/category', function () {
     return view('pages.categoryView');
 })->name('category.view');
 
+Route::get('/fav', function () {
+    return view('pages.favView');
+})->name('fav.view');
+
 
 
 
