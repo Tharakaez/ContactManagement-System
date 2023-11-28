@@ -17,14 +17,13 @@
             <div class="card-body">
                 <div class=" d-flex">
                     <!-- Button trigger modal -->
-                    <button type="button" class="btn btn-primary m-1" data-bs-toggle="modal"
-                        data-bs-target="#addContactModal">
+                    <button type="button" class="btn btn-primary m-1" data-bs-toggle="modal" data-bs-target="#addModal">
                         <i class="ti ti-users"></i>
                         Add Contact</button>
 
                     <div class="dropdown">
-                        <button class="btn btn-outline-primary m-1 dropdown-toggle" type="button"
-                            data-bs-toggle="dropdown" aria-expanded="false">
+                        <button class="btn btn-outline-primary m-1 dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
                             <i class="ti ti-filter"></i>
                         </button>
                         <ul class="dropdown-menu">
@@ -42,25 +41,8 @@
         </div>
         {{-- End: Btn card --}}
 
-        {{-- Alert Success --}}
-        @if (session('success'))
-            <div class="alert alert-success alert-dismissible fade show" role="alert">
-                <i class=" ti ti-alert-circle"></i> {{ session('success') }}
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
-                    <i class=" ti ti-x hover:text-red-600"></i>
-                </button>
-            </div>
-        @endif
-
-        {{-- Alert Error --}}
-        @if (session('error'))
-            <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                <i class=" ti ti-alert-circle"></i>{{ session('error') }}
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
-                    <i class=" ti ti-x hover:text-red-600"></i>
-                </button>
-            </div>
-        @endif
+        {{-- Alert --}}
+        @include('components.alert')
 
         {{-- Start: Table --}}
         <div class="table-responsive">
@@ -93,24 +75,37 @@
                             <span class="fw-normal">Text</span>
                         </td>
                         <td class="border-bottom-0">
-                            <h6 class="mb-0 text-gray-500 fw-normal fs-4">Text</h6>
+                            <h6 class="mb-0 fw-normal">Text</h6>
                         </td>
                         <td class="border-bottom-0">
-                            <h6 class="mb-0 text-gray-500 fw-normal fs-4">Text</h6>
+                            <h6 class="mb-0 fw-normal">Text</h6>
                         </td>
                         <td class="border-bottom-0">
-                            <h6 class="mb-0 text-gray-500 fw-normal fs-4">Text</h6>
+                            <h6 class="mb-0 fw-normal">Text</h6>
                         </td>
                         <td class="border-bottom-0">
-                            <a href="{{ route('single.contact') }}" class=" text-info view p-2"><i class="ti ti-eye fs-5"></i></a>
+                            <a href="{{ route('single.contact') }}" class=" text-info view p-2" data-bs-toggle="tooltip"
+                                data-bs-title="View Contact">
+                                <i class="ti ti-eye fs-5"></i></a>
+
+                            <button type="button" class=" text-success  edit btn p-2" data-bs-toggle="modal"
+                                data-bs-target="#editModal">
+                                <a data-bs-toggle="tooltip" data-bs-title="Add Favorite">
+                                    <i class=" ti ti-heart fs-5"></i>
+                                </a>
+                            </button>
 
                             <button type="button" class="text-warning edit btn p-2" data-bs-toggle="modal"
-                                data-bs-target="#editContactModal">
-                                <i class="ti ti-pencil fs-5"></i>
+                                data-bs-target="#editModal">
+                                <a data-bs-toggle="tooltip" data-bs-title="Edit Contact">
+                                    <i class="ti ti-pencil fs-5"></i>
+                                </a>
                             </button>
 
                             <button type="button" class="text-danger deleteContactBTN btn p-2" value="">
-                                <i class="ti ti-trash fs-5"></i>
+                                <a data-bs-toggle="tooltip" data-bs-title="Delete Contact">
+                                    <i class="ti ti-trash fs-5"></i>
+                                </a>
                             </button>
 
                         </td>
@@ -121,7 +116,7 @@
         {{-- End: Table --}}
 
         {{-- Start: add contact modal --}}
-        <div class="modal fade" id="addContactModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal fade" id="addModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -134,12 +129,12 @@
                             <div class="flex-wrap row">
                                 <div class="mb-3 col-md-6">
                                     <label for="name" class="form-label">Name</label>
-                                    <input type="text" class="border-blue-200 form-control rounded-2" id="name"
+                                    <input type="text" class="form-control rounded-2" id="name"
                                         placeholder="Enter Name" required name="name">
                                 </div>
                                 <div class="mb-3 col-md-6">
                                     <label for="name" class="form-label">Designation</label>
-                                    <input type="text" class="border-blue-200 form-control rounded-2" id="designation"
+                                    <input type="text" class="form-control rounded-2" id="designation"
                                         placeholder="Enter Designation" name="designation">
                                 </div>
                             </div>
@@ -147,13 +142,13 @@
                             <div class="flex-wrap row">
                                 <div class="mb-3 col-md-6">
                                     <label for="email" class="form-label">Email</label>
-                                    <input type="email" class="border-blue-200 form-control rounded-2" id="email"
+                                    <input type="email" class="form-control rounded-2" id="email"
                                         placeholder="Enter Email" oninput="validateEmail(this)" name="email">
                                     <p id="emailError" class="text-danger"></p>
                                 </div>
                                 <div class="mb-3 col-md-6">
                                     <label for="phone" class="form-label">Phone</label>
-                                    <input type="number" class="border-blue-200 form-control rounded-2" id="phone"
+                                    <input type="number" class="form-control rounded-2" id="phone"
                                         placeholder="Enter Phone" oninput="validatePhone(this)" required name="phone">
                                     <p id="phoneError" class="text-danger"></p>
                                 </div>
@@ -162,14 +157,13 @@
                             <div class="flex-wrap row">
                                 <div class="mb-3 col-md-6">
                                     <label for="location" class="form-label">Location</label>
-                                    <input type="text" class="border-blue-200 form-control rounded-2" id="location"
+                                    <input type="text" class="form-control rounded-2" id="location"
                                         placeholder="Enter Location" required name="location">
                                 </div>
 
                                 <div class="mb-3 col-md-6">
                                     <label for="cat" class="form-label">Category</label>
-                                    <select name="categoryId" id="cat"
-                                        class="border-blue-200 form-select form-control rounded-2">
+                                    <select name="categoryId" id="cat" class="form-select form-control rounded-2">
                                         @if (!empty($categories))
                                             @foreach ($categories as $data)
                                                 <option value="{{ $data['id'] }}">
@@ -182,21 +176,19 @@
 
                             <div class="mb-3">
                                 <label for="location" class="form-label">Note</label>
-                                <textarea class="border-blue-200 form-control rounded-2" id="note" rows="2" placeholder="Enter Note"
-                                    name="note"></textarea>
+                                <textarea class="form-control rounded-2" id="note" rows="2" placeholder="Enter Note" name="note"></textarea>
                             </div>
 
                             <div class="mb-3">
                                 <label for="formFile" class="form-label">Avatar</label>
-                                <input type="file" class="border-blue-200 rounded-2 form-control form-input"
-                                    id="formFile" accept="image/*" onchange="validateImageFile(this)" name="image">
+                                <input type="file" class="rounded-2 form-control form-input" id="formFile"
+                                    accept="image/*" onchange="validateImageFile(this)" name="image">
                                 <p id="fileError" class="text-danger"></p>
                             </div>
 
                             <div class="modal-footer">
-                                <button type="button" class="bg-red-400 btn btn-danger"
-                                    data-bs-dismiss="modal">Discard</button>
-                                <button type="submit" class="bg-blue-500 btn btn-primary">Add Contact</button>
+                                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Discard</button>
+                                <button type="submit" class="btn btn-primary">Add Contact</button>
                             </div>
                         </form>
                     </div>
@@ -207,8 +199,7 @@
         {{-- End: add contact modal --}}
 
         {{-- Start: edit contact modal --}}
-        <div class="modal fade" id="editContactModal" tabindex="-1" aria-labelledby="exampleModalLabel"
-            aria-hidden="true">
+        <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -222,26 +213,26 @@
                                 <div class="mb-3 col-md-6">
                                     <input type="hidden" name="id" id="idEdit">
                                     <label for="name" class="form-label">Name</label>
-                                    <input type="text" class="border-blue-200 form-control rounded-2" id="nameEdit"
+                                    <input type="text" class="form-control rounded-2" id="nameEdit"
                                         placeholder="Enter Name" required name="name">
                                 </div>
                                 <div class="mb-3 col-md-6">
                                     <label for="name" class="form-label">Designation</label>
-                                    <input type="text" class="border-blue-200 form-control rounded-2"
-                                        id="designationEdit" placeholder="Enter Designation" name="designation">
+                                    <input type="text" class="form-control rounded-2" id="designationEdit"
+                                        placeholder="Enter Designation" name="designation">
                                 </div>
                             </div>
 
                             <div class="flex-wrap row">
                                 <div class="mb-3 col-md-6">
                                     <label for="email" class="form-label">Email</label>
-                                    <input type="email" class="border-blue-200 form-control rounded-2" id="emailEdit"
+                                    <input type="email" class="form-control rounded-2" id="emailEdit"
                                         placeholder="Enter Email" oninput="validateEditEmail(this)" name="email">
                                     <p id="editEmailError" class="text-danger"></p>
                                 </div>
                                 <div class="mb-3 col-md-6">
                                     <label for="editPhone" class="form-label">Edit Phone</label>
-                                    <input type="number" class="border-blue-200 form-control rounded-2" id="editPhone"
+                                    <input type="number" class="form-control rounded-2" id="editPhone"
                                         placeholder="Enter Phone" oninput="validateEditPhone(this)" required
                                         name="phone">
                                     <p id="editPhoneError" class="text-danger"></p>
@@ -251,13 +242,12 @@
                             <div class="flex-wrap row">
                                 <div class="mb-3 col-md-6">
                                     <label for="location" class="form-label">Location</label>
-                                    <input type="text" class="border-blue-200 form-control rounded-2"
-                                        id="editLocation" placeholder="Enter Location" required name="location">
+                                    <input type="text" class="form-control rounded-2" id="editLocation"
+                                        placeholder="Enter Location" required name="location">
                                 </div>
                                 <div class="mb-3 col-md-6">
                                     <label for="catEdit" class="form-label">Category</label>
-                                    <select name="categoryId" id="catEdit"
-                                        class="border-blue-200 form-select form-control rounded-2">
+                                    <select name="categoryId" id="catEdit" class="form-select form-control rounded-2">
                                         @if (!empty($categories))
                                             @foreach ($categories as $data)
                                                 <option value="{{ $data['id'] }}">
@@ -270,23 +260,20 @@
 
                             <div class="mb-3">
                                 <label for="location" class="form-label">Note</label>
-                                <textarea class="border-blue-200 form-control rounded-2" id="noteEdit" rows="2" placeholder="Enter Note"
-                                    name="note"></textarea>
+                                <textarea class="form-control rounded-2" id="noteEdit" rows="2" placeholder="Enter Note" name="note"></textarea>
                             </div>
 
                             <div class="mb-3">
                                 <input type="text" class="form-control" id="imageOld" name="imageOld" hidden>
                                 <label for="editFormFile" class="form-label">Edit Avatar</label>
-                                <input type="file" class="border-blue-200 rounded-2 form-control form-input"
-                                    id="editFormFile" accept="image/*" onchange="validateEditImageFile(this)"
-                                    name="imageEdit">
+                                <input type="file" class="rounded-2 form-control form-input" id="editFormFile"
+                                    accept="image/*" onchange="validateEditImageFile(this)" name="imageEdit">
                                 <p id="editFileError" class="text-danger"></p>
                             </div>
 
                             <div class="modal-footer">
-                                <button type="button" class="bg-red-400 btn btn-danger"
-                                    data-bs-dismiss="modal">Discard</button>
-                                <button type="submit" class="bg-blue-500 btn btn-primary">Save Changes</button>
+                                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Discard</button>
+                                <button type="submit" class="btn btn-primary">Save Changes</button>
                             </div>
                         </form>
                     </div>
@@ -297,8 +284,7 @@
         {{-- End: edit contact modal --}}
 
         {{-- Start: delede contact modal --}}
-        <div class="modal fade" id="deleteContactModal" tabindex="-1" aria-labelledby="exampleModalLabel"
-            aria-hidden="true">
+        <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
                     <form action="{{ url('deleteContact') }}" method="POST">
@@ -312,14 +298,13 @@
                             <img src="{{ asset('assets/images/icons/waning.gif') }}" alt="" width="100"
                                 class="">
                             <h1 class="text-center modal-title fs-5 fw-bolder" id="exampleModalLabel">Are You Sure?</h1>
-                            <p class="text-center text-gray-400">Do you really want to delete these records? This process
+                            <p class="text-center text-secondary">Do you really want to delete these records? This process
                                 cannot be undone.</p>
                         </div>
 
                         <div class="modal-footer d-flex justify-content-center">
-                            <button type="button" class="bg-blue-500 btn btn-primary"
-                                data-bs-dismiss="modal">No</button>
-                            <button type="submit" class="bg-red-400 btn btn-danger">Yes</button>
+                            <button type="button" class="btn btn-primary" data-bs-dismiss="modal">No</button>
+                            <button type="submit" class="btn btn-danger">Yes</button>
                         </div>
                     </form>
                 </div>

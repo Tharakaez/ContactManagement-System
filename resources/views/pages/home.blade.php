@@ -85,7 +85,8 @@
                                         <h6 class="mb-0 text-gray-500 fw-normal fs-4">Kandy</h6>
                                     </td>
                                     <td class="border-bottom-0">
-                                        <a href="{{ route('single.contact') }}" class=" text-info view p-2"><i
+                                        <a href="{{ route('single.contact') }}" class=" text-info view p-2"
+                                            data-bs-toggle="tooltip" data-bs-title="View Contact"><i
                                                 class="ti ti-eye fs-5"></i></a>
                                     </td>
 
@@ -106,7 +107,8 @@
                                         <h6 class="mb-0 text-gray-500 fw-normal fs-4">Kandy</h6>
                                     </td>
                                     <td class="border-bottom-0">
-                                        <a href="{{ route('single.contact') }}" class=" text-info view p-2"><i
+                                        <a href="{{ route('single.contact') }}" class=" text-info view p-2"
+                                            data-bs-toggle="tooltip" data-bs-title="View Contact"><i
                                                 class="ti ti-eye fs-5"></i></a>
                                     </td>
 
