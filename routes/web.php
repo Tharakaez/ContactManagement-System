@@ -33,9 +33,9 @@ Route::get('/singleContact', function () {
 //     return view('pages.categoryView');
 // })->name('category.view');
 
-Route::get('/fav', function () {
-    return view('pages.favView');
-})->name('fav.view');
+// Route::get('/fav', function () {
+//     return view('pages.favView');
+// })->name('fav.view');
 
 
 
@@ -71,6 +71,12 @@ Route::middleware('verified')->group(function () {
     Route::post('/addContact', [ContactController::class, 'AddContact'])->name('add.contact');
     Route::post('/editContact', [ContactController::class, 'EditContact'])->name('edit.contact');
     Route::post('/deleteContact', [ContactController::class, 'DeleteContact'])->name('delete.contact');
+    Route::get('/favoriteContact{id}', [ContactController::class, 'FavoriteContact']);
+    Route::get('/unFavoriteContact{id}', [ContactController::class, 'UnFavoriteContact']);
+
+    // Favorite management
+    Route::get('/fav', [ContactController::class, 'FavoritePageView'])->name('fav.view');
+
 
 
 });

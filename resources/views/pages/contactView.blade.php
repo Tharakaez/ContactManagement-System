@@ -87,12 +87,17 @@
                                         data-bs-toggle="tooltip" data-bs-title="View Contact">
                                         <i class="ti ti-eye fs-5"></i></a>
 
-                                    <button type="button" class=" text-success  edit btn p-2" data-bs-toggle="modal"
-                                        data-bs-target="#editModal">
-                                        <a data-bs-toggle="tooltip" data-bs-title="Add Favorite">
-                                            <i class=" ti ti-heart fs-5"></i>
+                                    @if ($item['isFavorite'] == 0)
+                                        <a href="{{ url('/favoriteContact') . $item['id'] }}" <a data-bs-toggle="tooltip"
+                                            data-bs-title="Add Favorite">
+                                            <i class="ri-heart-line fs-5 text-success"></i>
                                         </a>
-                                    </button>
+                                    @else
+                                        <a href="{{ url('/unFavoriteContact') . $item['id'] }}" <a data-bs-toggle="tooltip"
+                                            data-bs-title="Remove Favorite">
+                                            <i class="ri-heart-fill fs-5 text-success"></i>
+                                        </a>.
+                                    @endif
 
                                     <button type="button" class="text-warning edit btn p-2" data-bs-toggle="modal"
                                         data-bs-target="#editModal" data-id="{{ $item['id'] }}"
@@ -106,7 +111,8 @@
                                         </a>
                                     </button>
 
-                                    <button type="button" class="text-danger deleteContactBTN btn p-2" value="{{ $item['id'] }}">
+                                    <button type="button" class="text-danger deleteContactBTN btn p-2"
+                                        value="{{ $item['id'] }}">
                                         <a data-bs-toggle="tooltip" data-bs-title="Delete Contact">
                                             <i class="ti ti-trash fs-5"></i>
                                         </a>
@@ -308,13 +314,14 @@
                         @csrf
                         <div class="modal-body d-flex flex-column justify-content-center align-items-center">
                             <div class="col-md-8 d-flex flex-column justify-content-center align-items-center">
-                            <input type="text" name="id" id="contact_id" hidden>
-                            <img src="{{ asset('assets/images/icons/waning.gif') }}" alt="" width="100"
-                                class="">
-                            <h1 class="text-center modal-title fs-5 fw-bolder" id="exampleModalLabel">Are You Sure?</h1>
-                            <p class="text-center text-dark ">Do you really want to delete these records? This process
-                                cannot be undone.</p>
-                        </div>
+                                <input type="text" name="id" id="contact_id" hidden>
+                                <img src="{{ asset('assets/images/icons/waning.gif') }}" alt="" width="100"
+                                    class="">
+                                <h1 class="text-center modal-title fs-5 fw-bolder" id="exampleModalLabel">Are You Sure?
+                                </h1>
+                                <p class="text-center text-dark ">Do you really want to delete these records? This process
+                                    cannot be undone.</p>
+                            </div>
                         </div>
 
                         <div class="modal-footer d-flex justify-content-center">

@@ -129,6 +129,53 @@ class ContactController extends Controller
         }
     }
 
+    // Favorite Contact
+    public function FavoriteContact($id)
+    {
+        try {
+            Contact::where(['id' => $id])->update([
+                'isFavorite' => 1,
+            ]);
+
+            return redirect()->back()->with('message', 'Contact Added to Favorite Successfully!');
+        } catch (Exception $e) {
+            return redirect()->back()->withErrors(['An error occurred']);
+        }
+    }
+
+    // Unfavorite Contact
+    public function UnfavoriteContact($id)
+    {
+        try {
+            Contact::where(['id' => $id])->update([
+                'isFavorite' => 0,
+            ]);
+
+            return redirect()->back()->with('message', 'Contact Removed from Favorite Successfully!');
+        } catch (Exception $e) {
+            return redirect()->back()->withErrors(['An error occurred']);
+        }
+    }
+
+    //favorite view
+    public function FavoritePageView()
+    {
+        try {
+            $data = Contact::join('categories', 'categories.id', '=', 'contacts.categoryId')
+                ->select('contacts.*', 'categories.name as categoryName')
+                ->where('contacts.isFavorite', 1)
+                ->orderBy('contacts.id', 'asc')
+                ->get();
+
+            $categories = Category::where('isActive', '=', '1')
+                ->get();
+
+            return view('pages.favView', compact('data', 'categories'));
+        } catch (Exception $e) {
+            return redirect()->back()->withErrors(['An error occurred']);
+        }
+    }
+
 
 
 
