@@ -1,7 +1,6 @@
 @extends('layouts.layoutDashboard')
 
 @section('content')
-
     <div class="container-fluid">
         {{-- Start: breadcrumbs --}}
         <nav aria-label="breadcrumb">
@@ -45,74 +44,85 @@
         @include('components.alert')
 
         {{-- Start: Table --}}
-        <div class="table-responsive">
-            <table class="table mb-0 align-middle text-nowrap">
-                <thead class="text-dark fs-4">
-                    <tr>
-                        <th class="border-bottom-0">
-                            <h6 class="mb-0 fw-semibold">Name</h6>
-                        </th>
-                        <th class="border-bottom-0">
-                            <h6 class="mb-0 fw-semibold">Email</h6>
-                        </th>
-                        <th class="border-bottom-0">
-                            <h6 class="mb-0 fw-semibold">Phone</h6>
-                        </th>
-                        <th class="border-bottom-0">
-                            <h6 class="mb-0 fw-semibold">Location</h6>
-                        </th>
-                        <th class="border-bottom-0">
-                            <h6 class="mb-0 fw-semibold">Action</h6>
-                        </th>
-                    </tr>
-                </thead>
-                <tbody>
+        @if (!empty($data) && count($data) > 0)
+            <div class="table-responsive">
+                <table class="table mb-0 align-middle text-nowrap">
+                    <thead class="text-dark fs-4">
+                        <tr>
+                            <th class="border-bottom-0">
+                                <h6 class="mb-0 fw-semibold">Name</h6>
+                            </th>
+                            <th class="border-bottom-0">
+                                <h6 class="mb-0 fw-semibold">Email</h6>
+                            </th>
+                            <th class="border-bottom-0">
+                                <h6 class="mb-0 fw-semibold">Phone</h6>
+                            </th>
+                            <th class="border-bottom-0">
+                                <h6 class="mb-0 fw-semibold">Location</h6>
+                            </th>
+                            <th class="border-bottom-0">
+                                <h6 class="mb-0 fw-semibold">Action</h6>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($data as $item)
+                            <tr>
+                                <td class="border-bottom-0">
+                                    <h6 class="mb-1 fw-semibold fs-4">{{ $item['name'] }}</h6>
+                                    <span class="fw-normal">{{ $item['designation'] }}</span>
+                                </td>
+                                <td class="border-bottom-0">
+                                    <h6 class="mb-0 fw-normal">{{ $item['email'] }}</h6>
+                                </td>
+                                <td class="border-bottom-0">
+                                    <h6 class="mb-0 fw-normal">{{ $item['phone'] }}</h6>
+                                </td>
+                                <td class="border-bottom-0">
+                                    <h6 class="mb-0 fw-normal">{{ $item['location'] }}</h6>
+                                </td>
+                                <td class="border-bottom-0">
+                                    <a href="{{ route('single.contact') }}" class=" text-info view p-2"
+                                        data-bs-toggle="tooltip" data-bs-title="View Contact">
+                                        <i class="ti ti-eye fs-5"></i></a>
 
+                                    <button type="button" class=" text-success  edit btn p-2" data-bs-toggle="modal"
+                                        data-bs-target="#editModal">
+                                        <a data-bs-toggle="tooltip" data-bs-title="Add Favorite">
+                                            <i class=" ti ti-heart fs-5"></i>
+                                        </a>
+                                    </button>
 
-                    <tr>
-                        <td class="border-bottom-0">
-                            <h6 class="mb-1 fw-semibold fs-4">Text</h6>
-                            <span class="fw-normal">Text</span>
-                        </td>
-                        <td class="border-bottom-0">
-                            <h6 class="mb-0 fw-normal">Text</h6>
-                        </td>
-                        <td class="border-bottom-0">
-                            <h6 class="mb-0 fw-normal">Text</h6>
-                        </td>
-                        <td class="border-bottom-0">
-                            <h6 class="mb-0 fw-normal">Text</h6>
-                        </td>
-                        <td class="border-bottom-0">
-                            <a href="{{ route('single.contact') }}" class=" text-info view p-2" data-bs-toggle="tooltip"
-                                data-bs-title="View Contact">
-                                <i class="ti ti-eye fs-5"></i></a>
+                                    <button type="button" class="text-warning edit btn p-2" data-bs-toggle="modal"
+                                        data-bs-target="#editModal" data-id="{{ $item['id'] }}"
+                                        data-name="{{ $item['name'] }}" data-designation="{{ $item['designation'] }}"
+                                        data-email="{{ $item['email'] }}" data-phone="{{ $item['phone'] }}"
+                                        data-location="{{ $item['location'] }}"
+                                        data-categoryid="{{ $item['categoryId'] }}" data-note="{{ $item['note'] }}"
+                                        data-image="{{ $item['image'] }}">
+                                        <a data-bs-toggle="tooltip" data-bs-title="Edit Contact">
+                                            <i class="ti ti-pencil fs-5"></i>
+                                        </a>
+                                    </button>
 
-                            <button type="button" class=" text-success  edit btn p-2" data-bs-toggle="modal"
-                                data-bs-target="#editModal">
-                                <a data-bs-toggle="tooltip" data-bs-title="Add Favorite">
-                                    <i class=" ti ti-heart fs-5"></i>
-                                </a>
-                            </button>
+                                    <button type="button" class="text-danger deleteContactBTN btn p-2" value="{{ $item['id'] }}">
+                                        <a data-bs-toggle="tooltip" data-bs-title="Delete Contact">
+                                            <i class="ti ti-trash fs-5"></i>
+                                        </a>
+                                    </button>
 
-                            <button type="button" class="text-warning edit btn p-2" data-bs-toggle="modal"
-                                data-bs-target="#editModal">
-                                <a data-bs-toggle="tooltip" data-bs-title="Edit Contact">
-                                    <i class="ti ti-pencil fs-5"></i>
-                                </a>
-                            </button>
-
-                            <button type="button" class="text-danger deleteContactBTN btn p-2" value="">
-                                <a data-bs-toggle="tooltip" data-bs-title="Delete Contact">
-                                    <i class="ti ti-trash fs-5"></i>
-                                </a>
-                            </button>
-
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
+                                </td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
+        @else
+            <div class="alert alert-info " role="alert">
+                No Data Found to Show !
+            </div>
+        @endif
         {{-- End: Table --}}
 
         {{-- Start: add contact modal --}}
@@ -124,7 +134,7 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <form action="#" method="POST" enctype="multipart/form-data">
+                        <form action="{{ route('add.contact') }}" method="POST" enctype="multipart/form-data">
                             @csrf
                             <div class="flex-wrap row">
                                 <div class="mb-3 col-md-6">
@@ -161,14 +171,17 @@
                                         placeholder="Enter Location" required name="location">
                                 </div>
 
+
                                 <div class="mb-3 col-md-6">
                                     <label for="cat" class="form-label">Category</label>
-                                    <select name="categoryId" id="cat" class="form-select form-control rounded-2">
-                                        @if (!empty($categories))
-                                            @foreach ($categories as $data)
-                                                <option value="{{ $data['id'] }}">
-                                                    {{ $data['categoryName'] }}</option>
+                                    <select name="categoryId" id="cat" class=" form-select">
+                                        <option value="" selected disabled hidden> Select Category</option>
+                                        @if (!empty($categories) && count($categories) > 0)
+                                            @foreach ($categories as $item)
+                                                <option value="{{ $item['id'] }}">
+                                                    {{ $item['name'] }}</option>
                                             @endforeach
+                                        @else
                                         @endif
                                     </select>
                                 </div>
@@ -207,7 +220,7 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <form action="#" method="POST" enctype="multipart/form-data">
+                        <form action="{{ route('edit.contact') }}" method="POST" enctype="multipart/form-data">
                             @csrf
                             <div class="flex-wrap row">
                                 <div class="mb-3 col-md-6">
@@ -245,13 +258,14 @@
                                     <input type="text" class="form-control rounded-2" id="editLocation"
                                         placeholder="Enter Location" required name="location">
                                 </div>
+
                                 <div class="mb-3 col-md-6">
                                     <label for="catEdit" class="form-label">Category</label>
                                     <select name="categoryId" id="catEdit" class="form-select form-control rounded-2">
                                         @if (!empty($categories))
                                             @foreach ($categories as $data)
                                                 <option value="{{ $data['id'] }}">
-                                                    {{ $data['categoryName'] }}</option>
+                                                    {{ $data['name'] }}</option>
                                             @endforeach
                                         @endif
                                     </select>
@@ -287,24 +301,25 @@
         <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
-                    <form action="{{ url('deleteContact') }}" method="POST">
+                    <div class="flex justify-end modal-header">
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <form action="{{ route('delete.contact') }}" method="POST">
                         @csrf
-                        <div class="flex justify-end modal-header">
-                            <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                aria-label="Close"></button>
-                        </div>
                         <div class="modal-body d-flex flex-column justify-content-center align-items-center">
+                            <div class="col-md-8 d-flex flex-column justify-content-center align-items-center">
                             <input type="text" name="id" id="contact_id" hidden>
                             <img src="{{ asset('assets/images/icons/waning.gif') }}" alt="" width="100"
                                 class="">
                             <h1 class="text-center modal-title fs-5 fw-bolder" id="exampleModalLabel">Are You Sure?</h1>
-                            <p class="text-center text-secondary">Do you really want to delete these records? This process
+                            <p class="text-center text-dark ">Do you really want to delete these records? This process
                                 cannot be undone.</p>
+                        </div>
                         </div>
 
                         <div class="modal-footer d-flex justify-content-center">
-                            <button type="button" class="btn btn-primary" data-bs-dismiss="modal">No</button>
                             <button type="submit" class="btn btn-danger">Yes</button>
+                            <button type="button" class="btn btn-primary" data-bs-dismiss="modal">No</button>
                         </div>
                     </form>
                 </div>
@@ -355,10 +370,8 @@
                 var id = $(this).val();
                 $('#contact_id').val(id);
                 // alert(id);
-                $('#deleteContactModal').modal('show');
+                $('#deleteModal').modal('show');
             });
         });
     </script>
-
-
 @endsection
