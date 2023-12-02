@@ -49,7 +49,7 @@
                     </thead>
                     <tbody>
                         @foreach ($data as $key => $item)
-                            <tr>
+                            <tr class=" m-0 ">
                                 <td class="border-bottom-0">
                                     <h6 class="mb-0 fw-normal">{{ ++$key }}</h6>
                                 </td>
@@ -81,9 +81,9 @@
                 </table>
             </div>
         @else
-                    <div class="alert alert-info " role="alert">
-                        No Data Found to Show !
-                    </div>
+            <div class="alert alert-info " role="alert">
+                No Data Found to Show !
+            </div>
         @endif
         {{-- End: Table --}}
 
