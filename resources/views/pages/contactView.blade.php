@@ -19,6 +19,13 @@
                     <button type="button" class="btn btn-primary m-1" data-bs-toggle="modal" data-bs-target="#addModal">
                         <i class="ti ti-users"></i>
                         Add Contact</button>
+
+                    <form action="#" method="POST" class="d-flex">
+                        @csrf
+                        <input type="text" class="form-control rounded-2 m-1" id="search" placeholder="Search"
+                            name="search">
+                        <button type="submit" class="btn btn-primary m-1"><i class="ti ti-search"></i></button>
+                    </form>
                 </div>
             </div>
         </div>
