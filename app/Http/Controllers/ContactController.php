@@ -62,7 +62,7 @@ class ContactController extends Controller
             $newContact->save();
 
             // Assuming you want to redirect to a specific route after adding the slider
-            return redirect()->back()->with('message', 'Contact added successfully');
+            return redirect()->back()->with('message', 'Contact added');
         } catch (Exception $e) {
             // Handle any exceptions that might occur during the process
             return redirect()->back()->withErrors(['An error occurred']);
@@ -104,7 +104,7 @@ class ContactController extends Controller
             ]);
 
             // Success message if the slider is edited successfully
-            return redirect()->back()->with('message', 'Place Card Edited Successfully');
+            return redirect()->back()->with('message', 'Contact edited');
         } catch (\Illuminate\Validation\ValidationException $exception) {
             // Return to the form with validation errors if image validation fails
             return redirect()->back()->withErrors($exception->errors());
@@ -123,7 +123,7 @@ class ContactController extends Controller
                 'isActive' => 0,
             ]);
 
-            return redirect()->back()->with('message', 'Contact Deleted Successfully!');
+            return redirect()->back()->with('message', 'Contact Deleted');
         } catch (Exception $e) {
             return redirect()->back()->withErrors(['An error occurred']);
         }
@@ -137,7 +137,7 @@ class ContactController extends Controller
                 'isFavorite' => 1,
             ]);
 
-            return redirect()->back()->with('message', 'Contact Added to Favorite Successfully!');
+            return redirect()->back()->with('message', 'Marked as Favorite!');
         } catch (Exception $e) {
             return redirect()->back()->withErrors(['An error occurred']);
         }
@@ -151,7 +151,7 @@ class ContactController extends Controller
                 'isFavorite' => 0,
             ]);
 
-            return redirect()->back()->with('message', 'Contact Removed from Favorite Successfully!');
+            return redirect()->back()->with('message', 'Marked as Unfavorite!');
         } catch (Exception $e) {
             return redirect()->back()->withErrors(['An error occurred']);
         }
@@ -175,6 +175,43 @@ class ContactController extends Controller
             return redirect()->back()->withErrors(['An error occurred']);
         }
     }
+
+    // single contact view
+    public function SingleContactView($id)
+    {
+        try {
+            $data = Contact::join('categories', 'categories.id', '=', 'contacts.categoryId')
+                ->select('contacts.*', 'categories.name as categoryName')
+                ->where('contacts.id', $id)
+                ->orderBy('contacts.id', 'asc')
+                ->get();
+
+            $categories = Category::where('isActive', '=', '1')
+                ->get();
+
+            return view('pages.singleContact', compact('data', 'categories'));
+        } catch (Exception $e) {
+            return redirect()->back()->withErrors(['An error occurred']);
+        }
+    }
+
+    // delete single contact
+    public function DeleteSinContact(Request $request)
+    {
+        $id = $request->id;
+        try {
+            Contact::where(['id' => $id])->update([
+                'isActive' => 0,
+            ]);
+
+            return view('pages.contactView')->with('message', 'Contact Deleted');
+        } catch (Exception $e) {
+            return redirect()->back()->withErrors(['An error occurred']);
+        }
+    }
+
+ 
+
 
 
 

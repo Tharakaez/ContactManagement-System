@@ -25,9 +25,9 @@ Route::get('/', function () {
 //     return view('pages.contactView');
 // })->name('contact.view');
 
-Route::get('/singleContact', function () {
-    return view('pages.singleContact');
-})->name('single.contact');
+// Route::get('/singleContact', function () {
+//     return view('pages.singleContact');
+// })->name('single.contact');
 
 // Route::get('/category', function () {
 //     return view('pages.categoryView');
@@ -76,6 +76,13 @@ Route::middleware('verified')->group(function () {
 
     // Favorite management
     Route::get('/fav', [ContactController::class, 'FavoritePageView'])->name('fav.view');
+
+    // Single Contact management
+    Route::get('/singleContact{id}', [ContactController::class, 'SingleContactView'])->name('single.contact');
+    Route::get('/viewDestination/{district}', [ContactController::class, 'ViewDistrict']);
+    Route::post('/deleteSinContact', [ContactController::class, 'DeleteSinContact'])->name('delete.sincontact');
+
+
 
 
 

@@ -55,7 +55,7 @@
                                 </td>
 
                                 <td class="border-bottom-0">
-                                    <a href="{{ route('single.contact') }}" class=" text-info view p-2"
+                                    <a href="{{ url('/singleContact') . $item['id'] }}" class=" text-info view p-2"
                                         data-bs-toggle="tooltip" data-bs-title="View Contact">
                                         <i class="ti ti-eye fs-5"></i></a>
 

@@ -83,7 +83,7 @@
                                     <h6 class="mb-0 fw-normal">{{ $item['location'] }}</h6>
                                 </td>
                                 <td class="border-bottom-0">
-                                    <a href="{{ route('single.contact') }}" class=" text-info view p-2"
+                                    <a href="{{ url('/singleContact') . $item['id'] }}" class=" text-info view p-2"
                                         data-bs-toggle="tooltip" data-bs-title="View Contact">
                                         <i class="ti ti-eye fs-5"></i></a>
 
@@ -332,7 +332,9 @@
                 </div>
             </div>
         </div>
-        {{-- End: delede contact modal --}}
+        {{-- End: delete contact modal --}}
+
+        
     </div>
 
 
