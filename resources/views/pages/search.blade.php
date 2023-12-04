@@ -31,6 +31,10 @@
 
         {{-- Start: Table --}}
         @if (!empty($contact) && count($contact) > 0)
+            {{-- Search count --}}
+            <div class=" container text-info" role="">
+                {{ $count }} Contact Found
+            </div>
             <div class="table-responsive">
                 <table class="table mb-0 align-middle text-nowrap">
                     <thead class="text-dark fs-4">
@@ -92,7 +96,7 @@
             </div>
         @else
             <div class="alert alert-info " role="alert">
-                No Data Found to Show !
+                No Contact Found
             </div>
         @endif
         {{-- End: Table --}}
