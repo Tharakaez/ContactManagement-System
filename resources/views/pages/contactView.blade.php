@@ -20,10 +20,10 @@
                         <i class="ti ti-users"></i>
                         Add Contact</button>
 
-                    <form action="#" method="POST" class="d-flex">
+                    <form action="{{ url('/search') }}" class="d-flex" method="post" enctype="multipart/form-data">
                         @csrf
-                        <input type="text" class="form-control rounded-2 m-1" id="search" placeholder="Search"
-                            name="search">
+                        <input type="text" class="form-control rounded-2 m-1" id="search" placeholder="Search ..."
+                            name="searchTxt">
                         <button type="submit" class="btn btn-primary m-1"><i class="ti ti-search"></i></button>
                     </form>
                 </div>

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\SearchController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
@@ -52,6 +53,9 @@ Route::middleware('verified')->group(function () {
     Route::get('/singleContact{id}', [ContactController::class, 'SingleContactView'])->name('single.contact');
     Route::get('/viewDestination/{district}', [ContactController::class, 'ViewDistrict']);
     Route::post('/deleteSinContact', [ContactController::class, 'DeleteSinContact'])->name('delete.sincontact');
+
+    // Search
+    Route::post('/search', [SearchController::class, 'search']);
 
 });
 
