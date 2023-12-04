@@ -1,0 +1,14 @@
+/* Make sure nothing inside buttons can send click events so we can catch button clicks with delegated events. */
+button * {
+    pointer-events: none;
+}
+
+/* Just a really naive css example to swap the button contents with the spinner. Bring your own spinner & styles. */
+.loading {
+    opacity: 0.5;
+}
+.loading span {
+    display: none;
+}
+
+/* Side note: I'm using opacity here to make the button look disabled. But you probably shouldn't set disable=true for the button on submit, even to prevent multiple clicks. There could be a server error, network problem or whatever. The user should be able to try to submit the form again any time without reloading the page. Also remember to have screen reader accessible text on your spinner. Take care of accessiblity! */
