@@ -21,35 +21,6 @@ Route::get('/', function () {
     return view('pages.index');
 });
 
-// Route::get('/contact', function () {
-//     return view('pages.contactView');
-// })->name('contact.view');
-
-// Route::get('/singleContact', function () {
-//     return view('pages.singleContact');
-// })->name('single.contact');
-
-// Route::get('/category', function () {
-//     return view('pages.categoryView');
-// })->name('category.view');
-
-// Route::get('/fav', function () {
-//     return view('pages.favView');
-// })->name('fav.view');
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 // Example of how you can define routes for email verification
@@ -81,10 +52,6 @@ Route::middleware('verified')->group(function () {
     Route::get('/singleContact{id}', [ContactController::class, 'SingleContactView'])->name('single.contact');
     Route::get('/viewDestination/{district}', [ContactController::class, 'ViewDistrict']);
     Route::post('/deleteSinContact', [ContactController::class, 'DeleteSinContact'])->name('delete.sincontact');
-
-
-
-
 
 });
 

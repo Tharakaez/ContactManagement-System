@@ -19,22 +19,6 @@
                     <button type="button" class="btn btn-primary m-1" data-bs-toggle="modal" data-bs-target="#addModal">
                         <i class="ti ti-users"></i>
                         Add Contact</button>
-
-                    <div class="dropdown">
-                        <button class="btn btn-outline-primary m-1 dropdown-toggle" type="button" data-bs-toggle="dropdown"
-                            aria-expanded="false">
-                            <i class="ti ti-filter"></i>
-                        </button>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item filter-option" href="#" data-category="all">All Categories</a>
-                            </li>
-                            <!-- Populate this list with your category options -->
-                            <li><a class="dropdown-item filter-option" href="#" data-category="all">Test</a>
-                            </li>
-                        </ul>
-                    </div>
-
-
                 </div>
             </div>
         </div>
@@ -66,7 +50,7 @@
                             </th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody id="contacts-list">
                         @foreach ($data as $item)
                             <tr>
                                 <td class="border-bottom-0">
@@ -334,7 +318,7 @@
         </div>
         {{-- End: delete contact modal --}}
 
-        
+
     </div>
 
 
