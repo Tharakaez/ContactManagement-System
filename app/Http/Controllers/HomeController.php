@@ -26,35 +26,40 @@ class HomeController extends Controller
      * @return \Illuminate\Contracts\Support\Renderable
      */
     public function index()
-{
-    try {
-        // All Contacts count (Saved)
-        $allContactsCount = Contact::where('isActive', 1)->count();
+    {
+        try {
+            $user = Auth::user();
 
-        // Today's Saved contacts count
-        $todaySavedContactsCount = Contact::where('isActive', 1)
-            ->whereDate('created_at', now()->toDateString())
-            ->count();
+            // All Contacts count (Saved) for the authenticated user
+            $allContactsCount = $user->contacts()->where('isActive', 1)->count();
 
-        // This Month's Saved contacts count
-        $thisMonthSavedContactsCount = Contact::where('isActive', 1)
-            ->whereYear('created_at', now()->year)
-            ->whereMonth('created_at', now()->month)
-            ->count();
+            // Today's Saved contacts count for the authenticated user
+            $todaySavedContactsCount = $user->contacts()
+                ->where('isActive', 1)
+                ->whereDate('created_at', now()->toDateString())
+                ->count();
 
-        $recentContacts = Contact::join('categories', 'categories.id', '=', 'contacts.categoryId')
-            ->select('contacts.*', 'categories.name as categoryName')
-            ->where('contacts.isActive', 1)
-            ->orderBy('contacts.created_at', 'desc')
-            ->take(5)
-            ->get();
+            // This Month's Saved contacts count for the authenticated user
+            $thisMonthSavedContactsCount = $user->contacts()
+                ->where('isActive', 1)
+                ->whereYear('created_at', now()->year)
+                ->whereMonth('created_at', now()->month)
+                ->count();
 
-        $categories = Category::where('isActive', '=', '1')->get();
+            $recentContacts = $user->contacts()
+                ->join('categories', 'categories.id', '=', 'contacts.categoryId')
+                ->select('contacts.*', 'categories.name as categoryName')
+                ->where('contacts.isActive', 1)
+                ->orderBy('contacts.created_at', 'desc')
+                ->take(5)
+                ->get();
 
-        return view('pages.home', compact('recentContacts', 'categories', 'allContactsCount', 'todaySavedContactsCount', 'thisMonthSavedContactsCount'));
-    } catch (Exception $e) {
-        return redirect()->back()->withErrors(['An error occurred']);
+            $categories = Category::where('isActive', '=', '1')->get();
+
+            return view('pages.home', compact('recentContacts', 'categories', 'allContactsCount', 'todaySavedContactsCount', 'thisMonthSavedContactsCount'));
+        } catch (Exception $e) {
+            return redirect()->back()->withErrors(['An error occurred']);
+        }
     }
-}
 
 }

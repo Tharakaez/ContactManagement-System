@@ -7,21 +7,26 @@ use App\Models\Contact;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Auth;
 
 class ContactController extends Controller
 {
-    //Contact View
+    // Contact View
     public function ContactPageView()
     {
         try {
-            $data = Contact::join('categories', 'categories.id', '=', 'contacts.categoryId')
+            // Retrieve the currently logged-in user
+            $user = Auth::user();
+
+            // Fetch contacts only for the currently logged-in user
+            $data = $user->contacts()
+                ->join('categories', 'categories.id', '=', 'contacts.categoryId')
                 ->select('contacts.*', 'categories.name as categoryName')
                 ->where('contacts.isActive', 1)
                 ->orderBy('contacts.id', 'asc')
                 ->get();
 
-            $categories = Category::where('isActive', '=', '1')
-                ->get();
+            $categories = Category::where('isActive', '=', '1')->get();
 
             return view('pages.contactView', compact('data', 'categories'));
         } catch (Exception $e) {
@@ -38,6 +43,8 @@ class ContactController extends Controller
 
 
         try {
+
+            $user = Auth::user();
             // Check if an image was uploaded and handle it
             if ($request->hasFile('image')) {
 
@@ -59,7 +66,8 @@ class ContactController extends Controller
             $newContact->note = $request->note;
             $newContact->categoryId = $request->categoryId;
 
-            $newContact->save();
+            // Associate the slider with the currently logged-in user
+            $user->contacts()->save($newContact);
 
             // Assuming you want to redirect to a specific route after adding the slider
             return redirect()->back()->with('message', 'Contact added');
@@ -73,6 +81,7 @@ class ContactController extends Controller
     public function EditContact(Request $request)
     {
         try {
+
             // Check if an image was uploaded and handle it
             if ($request->hasFile('imageEdit')) {
                 $request->validate([
@@ -161,14 +170,16 @@ class ContactController extends Controller
     public function FavoritePageView()
     {
         try {
-            $data = Contact::join('categories', 'categories.id', '=', 'contacts.categoryId')
+            $user = Auth::user();
+
+            $data = $user->contacts()
+                ->join('categories', 'categories.id', '=', 'contacts.categoryId')
                 ->select('contacts.*', 'categories.name as categoryName')
                 ->where('contacts.isFavorite', 1)
                 ->orderBy('contacts.id', 'asc')
                 ->get();
 
-            $categories = Category::where('isActive', '=', '1')
-                ->get();
+            $categories = Category::where('isActive', '=', '1')->get();
 
             return view('pages.favView', compact('data', 'categories'));
         } catch (Exception $e) {
@@ -180,14 +191,16 @@ class ContactController extends Controller
     public function SingleContactView($id)
     {
         try {
-            $data = Contact::join('categories', 'categories.id', '=', 'contacts.categoryId')
+            $user = Auth::user();
+
+            $data = $user->contacts()
+                ->join('categories', 'categories.id', '=', 'contacts.categoryId')
                 ->select('contacts.*', 'categories.name as categoryName')
                 ->where('contacts.id', $id)
                 ->orderBy('contacts.id', 'asc')
                 ->get();
 
-            $categories = Category::where('isActive', '=', '1')
-                ->get();
+            $categories = Category::where('isActive', '=', '1')->get();
 
             return view('pages.singleContact', compact('data', 'categories'));
         } catch (Exception $e) {
@@ -210,7 +223,7 @@ class ContactController extends Controller
         }
     }
 
- 
+
 
 
 

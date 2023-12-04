@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 
 class CategoryController extends Controller
@@ -14,12 +15,13 @@ class CategoryController extends Controller
     public function CategoryPageView()
     {
         try {
-            // Retrieve main slider data directly from the database
-            $data = Category::where('isActive', '=', '1')
-                ->get();
+            // Retrieve the currently logged-in user
+            $user = Auth::user();
+
+            // Fetch categories only for the currently logged-in user
+            $data = $user->categories()->where('isActive', 1)->get();
 
             return view('pages.categoryView', compact('data'));
-            // Assuming 'admin.pageManagement.editMainSliderPage' is the view to which you want to pass this data
         } catch (Exception $e) {
             return redirect()->back()->withErrors(['An error occurred']);
         }
@@ -28,15 +30,18 @@ class CategoryController extends Controller
     // Add Categories Section
     public function AddCategory(Request $request)
     {
-
         try {
-            // Create a new slider with the provided data
+            // Retrieve the currently logged-in user
+            $user = Auth::user();
+
+            // Create a new category associated with the currently logged-in user
             $newCat = new Category;
             $newCat->name = $request->name;
             $newCat->note = $request->note;
-            $newCat->save();
 
-            // Assuming you want to redirect to a specific route after adding the slider
+            // Associate the category with the currently logged-in user
+            $user->categories()->save($newCat);
+
             return redirect()->back()->with('message', 'Category Added Successfully');
         } catch (Exception $e) {
             // Handle any exceptions that might occur during the process

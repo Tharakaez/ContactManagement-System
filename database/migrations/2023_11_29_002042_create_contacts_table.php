@@ -24,6 +24,9 @@ return new class extends Migration
             $table->boolean('isFavorite')->default(0)->nullable();
             $table->boolean('isActive')->default(1)->nullable();
             $table->timestamps();
+            $table->unsignedBigInteger('user_id');
+
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 
