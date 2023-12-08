@@ -20,7 +20,7 @@ To set up this project locally, follow these steps:
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/yourusername/ContactManagement-System.git
+   git clone https://github.com/Tharakaez/ContactManagement-System.git
    
 2. Install dependencies:
     ```bash
