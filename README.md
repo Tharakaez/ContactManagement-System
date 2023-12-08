@@ -22,17 +22,20 @@ To set up this project locally, follow these steps:
    git clone https://github.com/yourusername/ContactManagement-System.git
    
 2. Install dependencies:
-    - cd ContactManagement-System
-    - composer install
-    - npm install && npm run dev
-    - cp .env.example .env
-    - php artisan key:generate
+    ```bash
+    cd ContactManagement-System
+    composer install
+    npm install && npm run dev
+    cp .env.example .env
+    php artisan key:generate
 
 3. Configure your .env file with the necessary details such as database information.
 4. Migrate the database:
-    - php artisan migrate
+   ```bash
+   php artisan migrate
 5. Serve the application:
-    - php artisan serve
+   ```bash
+   php artisan serve
 
 ## Usage
 
