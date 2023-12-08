@@ -14,7 +14,7 @@
         {{-- Start: Btn card --}}
         <div class="card">
             <div class="card-body">
-                <div class=" d-flex">
+                <div class=" d-lg-flex">
                     <!-- Button trigger modal -->
                     <button type="button" class="btn btn-primary m-1" data-bs-toggle="modal" data-bs-target="#addModal">
                         <i class="ti ti-users"></i>
@@ -79,12 +79,12 @@
                                         <i class="ti ti-eye fs-5"></i></a>
 
                                     @if ($item['isFavorite'] == 0)
-                                        <a href="{{ url('/favoriteContact') . $item['id'] }}" <a data-bs-toggle="tooltip"
+                                        <a href="{{ url('/favoriteContact') . $item['id'] }}" data-bs-toggle="tooltip"
                                             data-bs-title="Add Favorite">
                                             <i class="ri-heart-line fs-5 text-success"></i>
-                                        </a>
+                                        </data-bs-toggle=>
                                     @else
-                                        <a href="{{ url('/unFavoriteContact') . $item['id'] }}" <a data-bs-toggle="tooltip"
+                                        <a href="{{ url('/unFavoriteContact') . $item['id'] }}" data-bs-toggle="tooltip"
                                             data-bs-title="Remove Favorite">
                                             <i class="ri-heart-fill fs-5 text-success"></i>
                                         </a>.

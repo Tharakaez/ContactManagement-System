@@ -99,8 +99,8 @@
                             </table>
                         </div>
                     @else
-                        <div class="text-center">
-                            <h5 class="mb-0 fw-semibold">No Contacts Found</h5>
+                        <div class="">
+                            <h6 class="mb-0 text-info">No Contacts Found</h6>
                         </div>
                     @endif
                 </div>
