@@ -18,17 +18,17 @@
         @if (!empty($data))
             @foreach ($data as $item)
                 <div class="card">
-                    <div class="bg-white border-b card-header d-flex justify-content-between">
+                    <div class="bg-white border-b card-header d-flex justify-content-between align-items-center ">
                         <h1 class="fs-5 fw-bolder">Contact Details</h1>
                         <div class="">
                             @if ($item['isFavorite'] == 0)
-                                <a href="{{ url('/favoriteContact') . $item['id'] }}" class=" btn btn-success m-1">
-                                    Add Favorite
+                                <a href="{{ url('/favoriteContact') . $item['id'] }}" class=" btn btn-success m-1 rounded-pill" data-bs-toggle="tooltip"
+                                data-bs-title="Add Favorite">
                                     <i class=" ti ti-heart"></i>
                                 </a>
                             @else
-                                <a href="{{ url('/unFavoriteContact') . $item['id'] }}" class=" btn btn-warning  m-1">
-                                    Unfavorite
+                                <a href="{{ url('/unFavoriteContact') . $item['id'] }}" class=" btn btn-warning  m-1 rounded-pill " data-bs-toggle="tooltip"
+                                data-bs-title="Remove Favorite">
                                     <i class=" ti ti-heart"></i>
                                 </a>.
                             @endif
@@ -40,7 +40,7 @@
 
                             <div class=" col-lg-3 d-flex flex-column align-items-center align-items-lg-start">
                                 <img src="{{ URL::to('/') }}/adminImages/contactImage/{{ $item['image'] }}" alt="avatar"
-                                    class="mb-3 rounded-circle" width="150">
+                                    style=" height:150px ; width:150px; " class="mb-3 rounded-circle">
                                 <!-- ----------------data is on DB-------------- -->
                                 <div class=" d-flex">
                                     <div class="flex-grow-1 d-flex flex-column align-items-center align-items-lg-start">
@@ -48,7 +48,7 @@
                                         <!-- ----------------data is on DB-------------- -->
                                         <span class="mb-1 fw-normal">{{ $item['designation'] }}</span>
                                         <!-- ----------------data is on DB-------------- -->
-                                        <span class="px-3 py-1  rounded-3 text-bg-warning  ">Category -
+                                        <span class="px-3 py-1  rounded-3 bg-info  bg-opacity-50 text-dark">Category -
                                             {{ $item['categoryName'] }}</span>
                                     </div>
 
@@ -73,7 +73,7 @@
 
 
                                     <div
-                                        class="mt-lg-3 d-flex flex-column align-items-center align-items-lg-start  col-lg-12">
+                                        class="mt-3 d-flex flex-column align-items-center align-items-lg-start  col-lg-12">
                                         <div class=" d-flex align-items-center flex-column flex-lg-row">
                                             <div
                                                 class="p-2 d-flex align-items-center justify-content-center bg-info rounded-2">
